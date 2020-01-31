@@ -3,18 +3,23 @@
  * the draw method. But wait, there's more: being an electronic picture, it
  * can be changed. You can set it to black-and-white display and back to
  * colors (only after it's been drawn, of course).
+ * 
+ * The picture shown is a person who went to an art museum and is admiring
+ * the art shown.
  *
  * This class was written as an early example for teaching Java with BlueJ.
  * 
- * @author  Michael Kšlling and David J. Barnes
- * @version 2016.02.29
+ * @author  Ryan Boehm
+ * @version 2020.01.31
  */
 public class Picture
 {
-    private Square wall;
-    private Square window;
-    private Triangle roof;
-    private Circle sun;
+    private Square frame;
+    private Square background;
+    private Triangle topHalf;
+    private Circle bottomHalf;
+    private Square middle;
+    private Person tourist;
     private boolean drawn;
 
     /**
@@ -22,10 +27,12 @@ public class Picture
      */
     public Picture()
     {
-        wall = new Square();
-        window = new Square();
-        roof = new Triangle();  
-        sun = new Circle();
+        frame = new Square();
+        background = new Square();
+        topHalf = new Triangle();  
+        bottomHalf = new Circle();
+        middle = new Square();
+        tourist = new Person();
         drawn = false;
     }
 
@@ -35,28 +42,35 @@ public class Picture
     public void draw()
     {
         if(!drawn) {
-            wall.moveHorizontal(-140);
-            wall.moveVertical(20);
-            wall.changeSize(120);
-            wall.changeColor("blue");
-            wall.makeVisible();
+            frame.moveHorizontal(-30);
+            frame.moveVertical(-100);
+            frame.changeSize(150);
+            frame.changeColor("black");
+            frame.makeVisible();
             
-            window.changeColor("black");
-            window.moveHorizontal(-120);
-            window.moveVertical(40);
-            window.changeSize(40);
-            window.makeVisible();
+            background.changeColor("red");
+            background.moveHorizontal(-20);
+            background.moveVertical(-90);
+            background.changeSize(130);
+            background.makeVisible();
     
-            roof.changeSize(60, 180);
-            roof.moveHorizontal(20);
-            roof.moveVertical(-60);
-            roof.makeVisible();
+            topHalf.changeSize(70, 130);
+            topHalf.moveHorizontal(145);
+            topHalf.moveVertical(-110);
+            topHalf.makeVisible();
     
-            sun.changeColor("yellow");
-            sun.moveHorizontal(100);
-            sun.moveVertical(-40);
-            sun.changeSize(80);
-            sun.makeVisible();
+            bottomHalf.moveHorizontal(90);
+            bottomHalf.changeSize(70);
+            bottomHalf.makeVisible();
+            
+            middle.changeColor("magenta");
+            middle.changeSize(25);
+            middle.moveHorizontal(32);
+            middle.moveVertical(-60);
+            middle.makeVisible();
+            
+            tourist.moveHorizontal(-80);
+            tourist.makeVisible();
             drawn = true;
         }
     }
@@ -66,10 +80,12 @@ public class Picture
      */
     public void setBlackAndWhite()
     {
-        wall.changeColor("black");
-        window.changeColor("white");
-        roof.changeColor("black");
-        sun.changeColor("black");
+        frame.changeColor("black");
+        background.changeColor("white");
+        topHalf.changeColor("black");
+        bottomHalf.changeColor("black");
+        middle.changeColor("white");
+        tourist.changeColor("black");
     }
 
     /**
@@ -77,9 +93,11 @@ public class Picture
      */
     public void setColor()
     {
-        wall.changeColor("red");
-        window.changeColor("black");
-        roof.changeColor("green");
-        sun.changeColor("yellow");
+        frame.changeColor("black");
+        background.changeColor("red");
+        topHalf.changeColor("green");
+        bottomHalf.changeColor("blue");
+        middle.changeColor("magenta");
+        tourist.changeColor("black");
     }
 }
